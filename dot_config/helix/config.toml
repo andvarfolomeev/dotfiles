@@ -1,0 +1,44 @@
+theme = "catppuccin_macchiato"
+
+[editor]
+line-number = "relative"
+scroll-lines = 1
+scrolloff = 7
+bufferline = "always"
+
+auto-format = true
+
+[editor.lsp]
+display-messages = true
+
+[editor.search]
+smart-case = true
+
+[editor.indent-guides]
+render = true
+character = "▏"
+
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.file-picker]
+hidden = false
+
+[keys.normal]
+"+" = "expand_selection"
+"minus" = "shrink_selection"
+
+"[" = { "b" = "goto_previous_buffer" }
+"]" = { "b" = "goto_next_buffer" }
+
+"esc" = ["normal_mode", "collapse_selection"]
+
+"K" = "hover"
+"A-k" = "keep_selections"
+
+"0" = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
+
+[keys.insert]
+j = { k = ["normal_mode", "collapse_selection"] } # Maps `jk` to exit insert mode

@@ -1,0 +1,89 @@
+# export LDFLAGS="-L/opt/homebrew/opt/libiconv/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/libiconv/include"
+# export LDFLAGS="-L/opt/homebrew/opt/protobuf@3/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/protobuf@3/include"
+# export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+
+path=('/opt/homebrew/bin' $path)
+# path=('/Users/ada0l/.cargo/bin' $path)
+# path=('/opt/homebrew/opt/openssl@1.1/bin' $path)
+# path=('/opt/homebrew/opt/protobuf@3/bin' $path)
+# path=('/opt/homebrew/opt/openjdk/bin' $path)
+# path=('/opt/homebrew/opt/gnu-sed/libexec/gnubin' $path)
+#
+#
+#
+
+export EDITOR="nvim"
+
+dstop() {
+  docker stop $(docker ps -q)
+}
+
+alias ls="eza --color=always --icons --group-directories-first";
+alias la="eza --color=always --icons --group-directories-first --all";
+alias ll="eza --color=always --icons --group-directories-first --all --long";
+alias lg="lazygit";
+alias ld="lazydocker";
+alias g="git";
+alias ga="git add";
+alias glg="git log --graph";
+alias gds="git diff --staged";
+alias glo="git log --pretty=format:'%C(Yellow)%h  %C(reset)%ad (%C(Green)%cr%C(reset))%x09 %C(Cyan)%an: %C(reset)%s'";
+alias z="zellij";
+alias n="nvim";
+
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+plugins=(git)
+
+. "$HOME/.asdf/asdf.sh"
+fpath=(${ASDF_DIR}/completions $fpath)
+autoload -Uz compinit && compinit
+
+source $ZSH/oh-my-zsh.sh
+
+if command -v ngrok &>/dev/null; then
+  eval "$(ngrok completion)"
+fi
+
+# bun completions
+# export BUN_INSTALL="$HOME/.bun"
+# path=("$BUN_INSTALL/bin" $path)
+# [ -s "/Users/ada0l/.bun/_bun" ] && source "/Users/ada0l/.bun/_bun"
+
+function code() {
+  cd $(find ~/Code
+    -type d
+    -prune
+    -o
+    -print
+    -not
+    -path "*/.git*"
+    -not -path "*/node_modules*"
+    -not -path "*/protos*"
+    -not -path "*/generated*"
+    -not -path "*/venv/*" | fzf)
+}
+
+function zellij_attach_fzf() {
+  sessions=$(zellij ls | sed 's/\x1b\[[0-9;]*m//g' | awk '{print $1}')
+  if [[ -z "$sessions" ]]; then
+    echo "There are not sessions in zellij"
+  else
+    selected_session=$(echo "$sessions" | fzf --prompt="Zellij sessions: ")
+    if [[ -n "$selected_session" ]]; then
+      zellij attach "$selected_session"
+    else
+      echo "The session is not choosen"
+    fi
+  fi
+}
+
+if [[ $- == *i* ]]; then
+  if [[ -z "$ZELLIJ_SESSION_NAME" ]]; then
+    zellij_attach_fzf
+  fi
+fi
+
+export PATH
