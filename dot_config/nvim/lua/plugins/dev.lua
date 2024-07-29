@@ -2,7 +2,7 @@ return {
   {
     enabled = true,
     name = 'obsidian',
-    dir = '~/.config/nvim/lua/obsidian/',
+    dir = '~/Code/personal/obsidian',
     lazy = 'VeryLazy',
     keys = {
       { '<leader>ov', '<cmd>lua require("obsidian").vault_prompt()<cr>', desc = 'Vault prompt' },
