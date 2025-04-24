@@ -1,4 +1,4 @@
-theme = "catppuccin_macchiato"
+theme = "ayu_dark"
 
 [editor]
 line-number = "relative"
@@ -13,15 +13,6 @@ display-messages = true
 
 [editor.search]
 smart-case = true
-
-[editor.indent-guides]
-render = true
-character = "▏"
-
-[editor.statusline]
-mode.normal = "NORMAL"
-mode.insert = "INSERT"
-mode.select = "SELECT"
 
 [editor.file-picker]
 hidden = false

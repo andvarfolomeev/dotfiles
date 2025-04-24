@@ -1,3 +1,30 @@
 [user]
-	name = avarfolomeev
-	email = avarfolomeev@sfxdx.com
+	name = andvarfolomeev
+	email = andreika.varfolomeev@yandex.ru
+	signingkey = 8F5617203364D9DF
+[core]
+	excludesfile = /Users/andvarfolomeev/.gitignore
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg
+[alias]
+	cl = "clone"
+	p = "pull"
+
+	ch = "checkout"
+	cb = "checkout -b"
+	cp = "checkout -p"
+
+	s = "status -sb"
+
+	l = "log"
+
+	st = "stash";
+	sth = "stash show -p";
+	stl = "stash list";
+	std = "stash drop";
+	stp = "stash pop";
+	sta = "stash apply";
+[push]
+	autoSetupRemote = true
