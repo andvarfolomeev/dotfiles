@@ -1,0 +1,14 @@
+GET https://api.restful-api.dev/objects
+
+###
+GET https://api.restful-api.dev/objects/7
+
+
+###
+PATCH https://api.restful-api.dev/objects/7
+Content-Type: application/json
+
+{
+   "name": "Apple MacBook Pro 16 (Updated Name)"
+}
+
